@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="modig.shopware_mail_bundle.admin_client" class="Modig\ShopwareAdminApiBundle\HttpClient\ShopwareAdminClient"/>
+        <service id="Modig\ShopwareAdminApiBundle\HttpClient\ShopwareAdminClient" alias="modig.shopware_mail_bundle.admin_client"/>
+
+        <service id="modig.shopware_mail_bundle.factory.request_message" class="Modig\ShopwareAdminApiBundle\Factory\RequestMessageFactory"/>
+        <service id="Modig\ShopwareAdminApiBundle\Factory\RequestMessageFactory" alias="modig.shopware_mail_bundle.factory.request_message"/>
+    </services>
+</container>

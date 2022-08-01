@@ -1,0 +1,21 @@
+{
+  "name": "modig/shopware-admin-api-bundle",
+  "description": "Shopware Admin API implementation",
+  "type": "symfony-bundle",
+  "require": {
+    "php": ">=7.4",
+    "symfony/framework-bundle": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Modig\\ShopwareAdminApiBundle\\": "src/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Claudiu Stoica",
+      "email": "c.stoica@modigagency.com"
+    }
+  ]
+}
