@@ -124,6 +124,29 @@ class RequestMessageFactory
         return $requestMessage;
     }
 
+    public function createEntityMessage(string $entity, array $data, array $body): RequestMessage
+    {
+        $requestMessage = $this->createRequestMessage();
+        $requestMessage->setUrl($data['host'].'/api/'.$entity)
+            ->setMethod('POST')
+            ->setHeaders($this->getHeaders($data['token']))
+            ->setBody(json_encode($body));
+
+        return $requestMessage;
+    }
+
+    public function createActionMessage(string $action, array $data, array $body = []): RequestMessage
+    {
+        $method = $data['method'] ?? 'POST';
+        $requestMessage = $this->createRequestMessage();
+        $requestMessage->setUrl($data['host'].'/api/_action/'.$action)
+            ->setMethod($method)
+            ->setHeaders($this->getHeaders($data['token']))
+            ->setBody(json_encode($body));
+
+        return $requestMessage;
+    }
+
     public function createRequestMessage(): RequestMessageInterface
     {
         return new RequestMessage();
