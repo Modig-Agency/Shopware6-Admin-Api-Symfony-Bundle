@@ -135,14 +135,14 @@ class RequestMessageFactory
         return $requestMessage;
     }
 
-    public function createActionMessage(string $action, array $data, array $body = []): RequestMessage
+    public function createActionMessage(string $action, array $data, string $body = '', array $headers = []): RequestMessage
     {
         $method = $data['method'] ?? 'POST';
         $requestMessage = $this->createRequestMessage();
         $requestMessage->setUrl($data['host'].'/api/_action/'.$action)
             ->setMethod($method)
-            ->setHeaders($this->getHeaders($data['token']))
-            ->setBody(json_encode($body));
+            ->setHeaders($this->getHeaders($data['token'], $headers))
+            ->setBody($body);
 
         return $requestMessage;
     }
@@ -152,12 +152,14 @@ class RequestMessageFactory
         return new RequestMessage();
     }
 
-    private function getHeaders(string $token): array
+    private function getHeaders(string $token, array $headers = []): array
     {
-        return [
+        $defaultHeaders = [
             'Content-Type' => 'application/json',
             'Authorization' => "Bearer $token",
             'Accept' => 'application/json'
         ];
+
+        return array_merge($defaultHeaders, $headers);
     }
 }
